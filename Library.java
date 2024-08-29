@@ -33,7 +33,7 @@ public class Library {
 
     public Book finBookbyName(String bookName) {
         for (Book book : books) {
-            if (book.getBookName().equals(bookName)) {
+            if (book.getBookName().equalsIgnoreCase(bookName)) {
                 return book;
             }
         }
@@ -43,7 +43,7 @@ public class Library {
     public List<Book> findBookByAuthorName(String authorName) {
         List<Book> result = new ArrayList<>();
         for (Book book : books) {
-            if (book.getAuthorName().equals(authorName)) {
+            if (book.getAuthorName().equalsIgnoreCase(authorName)) {
                 result.add(book);;
             }
         }
@@ -53,7 +53,7 @@ public class Library {
     public List<Book> findBookbyPublisherName(String publisherName) {
         List<Book> result = new ArrayList<>();
         for (Book book : books) {
-            if (book.getPublisherName().equals(publisherName)) {
+            if (book.getPublisherName().equalsIgnoreCase(publisherName)) {
                 result.add(book);
             }
         }
@@ -66,7 +66,7 @@ public class Library {
 
     public Book finBookbyISBN(String ISBN) {
         for (Book book : books) {
-            if (book.getISBN().equals(ISBN)) {
+            if (book.getISBN().equalsIgnoreCase(ISBN)) {
                 return book;
             }
         }
