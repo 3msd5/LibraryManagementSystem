@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class LibrarySystem {
     private Library library;
     private Scanner scanner;
+    private User currentUser;
 
     public LibrarySystem() {
         library = new Library();
@@ -14,9 +15,32 @@ public class LibrarySystem {
 
     public static void main(String[] args) {
         LibrarySystem librarySystem = new LibrarySystem();
-        librarySystem.start();
+        librarySystem.login();
     }
+    public void login() {
+        Librarian librarian = new Librarian(9999,"AdminAd","AdminSoyad","admin@mail.com","admin","123","Librarian");
+        User Student = new Student(1,"studentAd","studentSoyad","student@mail.com","studentname","123","Student");
 
+        System.out.println("Welcome to the Library Management System");
+        System.out.print("Enter username: ");
+        String username = scanner.nextLine();
+        System.out.print("Enter password: ");
+        String password = scanner.nextLine();
+
+        if (username.equals(librarian.getUsername()) && password.equals(librarian.getPassword())) {
+            currentUser = librarian;
+            System.out.println("Logged in successfully - Welcome Librarian");
+            start();
+        } else if (username.equals(librarian.getUsername()) && password.equals(librarian.getPassword())) {
+            currentUser = librarian;
+            System.out.println("Logged in successfully - Welcome "+Student.getFirstName());
+            start();
+        }else {
+            System.out.println("Invalid username or password");
+        }
+
+
+    }
     public void start() {
         System.out.println("Library Management System");
         boolean run = true;
@@ -61,10 +85,12 @@ public class LibrarySystem {
                     }
                     break;
                 case 4:
-                    System.out.println("1. Search Book By ID");
+                {System.out.println("1. Search Book By ID");
                     System.out.println("2. Search Book by Name");
                     System.out.println("3. Search Book by Author");
                     System.out.println("4. Search Book by Publisher");
+                    System.out.println("5. Search Book by ISBN");
+
                     int choice3 = scanner.nextInt();
                     scanner.nextLine();
                     switch (choice3) {
@@ -80,10 +106,12 @@ public class LibrarySystem {
                         case 4:
                             findBookbyPublisherName();
                             break;
+                        case 5:
+                            findBookbyISBN();
                         default:
                             System.out.println("Invalid choice, try again");
                     }
-                    break;
+                    break;}
                 case 5:
                     run = false;
                     System.out.println("Library Management System Exits");
@@ -245,6 +273,26 @@ public class LibrarySystem {
             System.out.println("Total book number for '"+publisherName+"': " + bookCount);
         } else {
             System.out.println("No books found");
+            System.out.println("---------------------------------------------");
+        }
+    }
+    private void findBookbyISBN() {
+        System.out.print("ISBN of the book you want to find: ");
+        String ISBN = scanner.nextLine();
+
+        Book book = library.finBookbyISBN(ISBN);
+        if (book != null) {
+            System.out.println("Book Found");
+            System.out.println("---------------------------------------------");
+            System.out.println("Book ID        : " + book.getBookID());
+            System.out.println("Book Name      : " + book.getBookName());
+            System.out.println("Author Name    : " + book.getAuthorName());
+            System.out.println("Publisher Name : " + book.getPublisherName());
+            System.out.println("ISBN           : " + book.getISBN());
+            System.out.println("Available      : " + (book.isAvailable() ? "Yes" : "No"));
+            System.out.println("---------------------------------------------");
+        } else {
+            System.out.println("Book not found");
             System.out.println("---------------------------------------------");
         }
     }

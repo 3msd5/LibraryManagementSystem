@@ -63,4 +63,13 @@ public class Library {
     public List<Book> getAllBooks() {
         return books;
     }
+
+    public Book finBookbyISBN(String ISBN) {
+        for (Book book : books) {
+            if (book.getISBN().equals(ISBN)) {
+                return book;
+            }
+        }
+        return null;
+    }
 }
