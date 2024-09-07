@@ -11,7 +11,7 @@ public class LibrarySystem {
     public LibrarySystem() {
         library = new Library();
         scanner = new Scanner(System.in);
-        library.loadBooksFromFile("C:\\Users\\muham\\OneDrive\\Masaüstü\\LibraryManagementSystem\\out\\production\\LibraryManagementSystem\\books.txt\\");
+        library.loadBooksFromFile("C:\\Users\\muham\\OneDrive\\Masaüstü\\LibraryManagementSystem\\out\\production\\LibraryManagementSystem\\books.txt");
     }
 
     public static void main(String[] args) {

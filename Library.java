@@ -33,15 +33,32 @@ public class Library {
     }
 
     public void saveBooksToFile() {
+        // Dosya yolunu doğru bir şekilde tanımlayın
+        String filePath = "C:\\Users\\muham\\OneDrive\\Masaüstü\\LibraryManagementSystem\\out\\production\\LibraryManagementSystem\\books.txt";
+
+        // Dosya yolunun geçerliliğini kontrol edin
+        if (filePath == null || filePath.trim().isEmpty()) {
+            System.out.println("Error: File path is null or empty.");
+            return;
+        }
+
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (Book book : books) {
-                writer.write(book.getBookID() + "," + book.getBookName() + "," + book.getAuthorName() + "," + book.getPublisherName() + "," + book.getISBN() + "," + book.isAvailable());
-                writer.newLine();
+                // Kitap bilgilerini dosyaya yazma işlemi
+                writer.write(book.getBookID() + "," +
+                        book.getBookName() + "," +
+                        book.getAuthorName() + "," +
+                        book.getPublisherName() + "," +
+                        book.getISBN() + "," +
+                        book.isAvailable());
+                writer.newLine(); // Her kitap için yeni bir satıra geç
             }
         } catch (IOException e) {
+            // Hata mesajını detaylı olarak yazdır
             System.out.println("Error saving to file: " + e.getMessage());
         }
     }
+
 
     public void loadBooksFromFile(String filePath) {
         books.clear(); // Önce mevcut kitap listesini temizleyin
