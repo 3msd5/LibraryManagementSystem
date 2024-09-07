@@ -11,6 +11,7 @@ public class LibrarySystem {
     public LibrarySystem() {
         library = new Library();
         scanner = new Scanner(System.in);
+        library.loadBooksFromFile("C:\\Users\\muham\\OneDrive\\Masaüstü\\LibraryManagementSystem\\out\\production\\LibraryManagementSystem\\books.txt\\");
     }
 
     public static void main(String[] args) {
@@ -159,12 +160,15 @@ public class LibrarySystem {
 
     private void listBook() {
         List<Book> books = library.getAllBooks();
+        System.out.println("Debug: Number of books in the list = " + books.size()); // Debugging line
         if (books.isEmpty()) {
             System.out.println("No books available in the library.");
         } else {
             System.out.println("Book List");
             System.out.println("---------------------------------------------");
-            for (Book book : books) {
+            for (int i = 0; i < books.size(); i++) {
+                Book book = books.get(i);
+                System.out.println("Debug: Reading book at index " + i); // Debugging line
                 System.out.println("Book ID        : " + book.getBookID());
                 System.out.println("Book Name      : " + book.getBookName());
                 System.out.println("Author Name    : " + book.getAuthorName());
@@ -175,6 +179,9 @@ public class LibrarySystem {
             }
         }
     }
+
+
+
 
     private void addBook() {
         System.out.print("Book Name: ");
