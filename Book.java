@@ -17,6 +17,12 @@ public class Book {
         this.available = available;
     }
 
+    @Override
+    public String toString() {
+        return "Book ID        : " + bookID + "\n" +
+                "Book Name      : " + bookName;
+    }
+
     public int getBookID() {
         return bookID;
     }

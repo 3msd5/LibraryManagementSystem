@@ -443,7 +443,14 @@ public class LibrarySystem {
         if (availableBooks.isEmpty()) {
             System.out.println("No available books.");
         } else {
-            System.out.println("Available books: " + availableBooks);
+            System.out.println("Available books:");
+            for (Book book : availableBooks) {
+                System.out.println("Book ID        : " + book.getBookID());
+                System.out.println("Book Name      : " + book.getBookName());
+                System.out.println("---------------------------------------------");
+            }
+            System.out.println("Total available books: " + availableBooks.size());
         }
     }
+
 }
